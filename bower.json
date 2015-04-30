@@ -1,0 +1,17 @@
+{
+  "name": "adapt-objectMatching",
+  "version": "1.0.0",
+  "homepage": "https://github.com/BATraining/adapt-objectMatching",
+  "authors": [
+    "Himanshu Rajotia <himanshu.rajotia@exultcorp.com>"
+  ],
+  "displayName" : "Object Matching",
+  "component" : "objectMatching",
+  "description": "A basic Adapt object matching component.",
+  "main": "/js/adapt-objectMatching.js",
+  "keywords": [
+    "adapt-plugin",
+    "adapt-component"
+  ],
+  "license": "GPLv3"
+}
