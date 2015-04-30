@@ -1,0 +1,135 @@
+.objectMatching-inner {
+
+  .objectMatching-draggables-container {
+    display: inline-block;
+    width: 49%;
+    vertical-align: top;
+
+    .objectMatching-item-draggable-wrapper {
+      position: relative;
+      display: block;
+      border-width: 2px;
+      border-style: solid;
+      border-color: @primary-color;
+      margin: 0 auto 2px;
+
+      &.selected {
+        border-style: solid;
+        border-color: @secondary-color;
+      }
+
+      .objectMatching-item-draggable {
+        display: block;
+        width: inherit;
+        height: inherit;
+        text-decoration: none;
+        color: #000000;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        -khtml-user-select: none;
+        user-select:none;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        .objectMatching-item-draggable-inner {
+          width: inherit;
+          height: inherit;
+        }
+
+        .objectMatching-item-draggable-index {
+          position: absolute;
+          bottom: 0px;
+          right: 0px;
+          width: 22px;
+          height: 22px;
+          text-align: center;
+          font-size: 12px;
+          background-color: @primary-color;
+          color: #FFFFFF;
+          padding: 0px;
+        }
+      }
+    }
+  }
+
+  .objectMatching-droppables-container {
+    display: inline-block;
+    width: 49%;
+    vertical-align: top;
+
+    .objectMatching-item-droppable {
+      position: relative;
+      display: block;
+      border-width: 2px;
+      border-style: solid;
+      border-color:@primary-color;
+      margin: 0 auto 2px;
+
+      .objectMatching-item-droppable-inner {
+        width: inherit;
+        height: inherit;
+      }
+
+      .objectMatching-item-droppable-index {
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        width: 22px;
+        height: 22px;
+        text-align: center;
+        font-size: 12px;
+        background-color: @primary-color;
+        color: #FFFFFF;
+        padding: 0px;
+      }
+    }
+  }
+
+  @media (max-width:760px) {
+
+    .objectMatching-draggables-container, .objectMatching-droppables-container {
+      display: block;
+      width: 100%;
+    }
+
+    .objectMatching-droppables-container {
+      margin-top: 25px;
+    }
+  }
+}
+
+.objectMatching-widget {
+
+  &.show-user-answer {
+    .incorrect {
+      border-style: solid;
+      border-color: #FF0000;
+    }
+    .correct {
+      border-style: solid;
+      border-color: #00FF00;
+    }
+  }
+
+  &.show-correct-answer {
+    .objectMatching-item-droppable {
+      border-style: solid;
+      border-color: #00FF00;
+    }
+  }
+
+  &.disabled {
+    .objectMatching-item-draggable {
+      &:hover {
+        cursor: default;
+      }
+    }
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
