@@ -125,6 +125,7 @@ define(function(require) {
             if (!this.model.get('_isEnabled') || !currentlySelectedItemId) return false;
 
             var $selectedElementContainer = this.$(event.currentTarget).closest('.objectMatching-item-droppable');
+
             var selectedElementId = $selectedElementContainer.attr('data-id');
 
             var draggableItems = this.model.get('_draggableItems');
@@ -133,7 +134,7 @@ define(function(require) {
 
             if(selectedItem._selectedItemId && selectedItem._selectedItemId == currentlySelectedItemId) {
                 $selectedElementContainer.find('.objectMatching-item-droppable-index').html('');
-
+                $selectedElementContainer.removeClass("selected");
                 selectedItem._selectedItemId = null;
             } else {
                 var existingSelectedItem = _.where(droppableItems, {_selectedItemId: currentlySelectedItemId})[0];
@@ -141,9 +142,13 @@ define(function(require) {
                 if(existingSelectedItem) {
                     this.$('[data-id=' + existingSelectedItem.id + ']')
                         .find('.objectMatching-item-droppable-index').html('');
-
+                    $selectedElementContainer.removeClass("selected");
                     existingSelectedItem._selectedItemId = null;
                 }
+                $selectedElementContainer
+                    .addClass('selected')
+                    .siblings('div')
+                    .removeClass('selected');
                 $selectedElementContainer
                     .find('.objectMatching-item-droppable-index')
                     .html(_.where(draggableItems, {id: currentlySelectedItemId})[0]._index);
@@ -165,6 +170,7 @@ define(function(require) {
 
             if(canSubmit) {
                 this.$('.objectMatching-item-draggable-wrapper').removeClass('selected');
+                this.$('.objectMatching-item-droppable').removeClass("selected");
             }
 
             return canSubmit;
@@ -254,10 +260,12 @@ define(function(require) {
         },
 
         setdroppableItems: function(droppableContainerIndex, draggableItemId) {
+
             var $droppableItemContainer = this.$('.objectMatching-item-droppable').eq(droppableContainerIndex);
             var draggableItem = _.where(this.model.get('_draggableItems'), {id: draggableItemId})[0];
 
             $droppableItemContainer
+
                 .find('.objectMatching-item-droppable-index')
                 .html(this.$('.objectMatching-item-draggable').index(this.$('[data-id=' + draggableItem.id + ']')) + 1);
         },
