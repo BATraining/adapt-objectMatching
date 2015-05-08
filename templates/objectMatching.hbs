@@ -1,0 +1,33 @@
+{{! Maintainers - Himanshu Rajotia <himanshu.rajotia@exultcorp.com>}}
+<div class="objectMatching-inner component-inner" role="region">
+    {{> component this}}
+    <div class="objectMatching-widget component-widget {{#unless _isEnabled}} disabled {{#if _isComplete}} complete submitted show-user-answer {{#if _isCorrect}}correct{{/if}} {{/if}} {{/unless}}">
+        <div class="objectMatching-draggables-container">
+            {{#each _draggableItems}}
+            <div class="objectMatching-item-draggable-wrapper default-border" style="max-width:{{../_defaultMaxWidth}}px;height:{{../_defaultHeight}}px;">
+                <div class="objectMatching-item-draggable component-item component-item-color item-{{@index}} cursor-pointer" data-id="{{id}}">
+                    <div class="objectMatching-item-draggable-inner">
+                        {{{body}}}
+                    </div>
+                    <div class="objectMatching-item-draggable-index">
+                        {{_index}}
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <div class="objectMatching-droppables-container">
+            {{#each _droppableItems}}
+            <div class="objectMatching-item-droppable default-border {{#unless ../_isEnabled}} {{#if _isCorrect}} correct{{else}} incorrect{{/if}} {{/unless}}" style="max-width:{{../_defaultMaxWidth}}px;height:{{../_defaultHeight}}px;" data-id="{{id}}">
+                <div class="objectMatching-item-droppable-inner">
+                    {{{body}}}
+                </div>
+                <div class="objectMatching-item-droppable-index">
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    <div class="buttons">
+    </div>
+</div>
