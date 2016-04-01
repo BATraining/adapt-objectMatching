@@ -2,45 +2,92 @@
     adapt-objectMatching
     Copyright (C) 2015 Bombardier Inc. (www.batraining.com)
     https://github.com/BATraining/adapt-objectMatching/blob/master/LICENSE
-   
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-   
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-   
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="objectMatching-inner component-inner" role="region">
+<div class="objectMatching-inner component-inner" role="region" aria-label="{{_globals._components._objectMatching.ariaRegion}}" {{#if _globals._components._objectMatching.ariaRegion}}tabindex="0"{{/if}}>
     {{> component this}}
-    <div class="objectMatching-widget component-widget {{#unless _isEnabled}} disabled {{#if _isComplete}} complete submitted show-user-answer {{#if _isCorrect}}correct{{/if}} {{/if}} {{/unless}}">
-        <div class="objectMatching-draggables-container">
+    <div class="objectMatching-widget component-widget {{#unless _isEnabled}} disabled {{#if _isInteractionComplete}} complete submitted show-user-answer {{#if _isCorrect}}correct{{/if}} {{/if}} {{/unless}}">
+        <div class="objectMatching-container draggables-container">
             {{#each _draggableItems}}
-            <div class="objectMatching-item-draggable-wrapper default-border" style="max-width:{{../_defaultMaxWidth}}px;height:{{../_defaultHeight}}px;">
-                <div class="objectMatching-item-draggable component-item component-item-color item-{{@index}} cursor-pointer" data-id="{{id}}">
-                    <div class="objectMatching-item-draggable-inner">
-                        {{{body}}}
-                    </div>
-                    <div class="objectMatching-item-draggable-index">
-                        {{_index}}
+            <div class="objectMatching-item-wrapper draggable-item-wrapper">
+                <div class="objectMatching-item-wrapper-inner draggable-item-wrapper-inner default-border">
+                    <div class="objectMatching-item draggable-item component-item component-item-color item-{{@index}} cursor-pointer" data-id="{{id}}">
+                        <div class="objectMatching-item-inner draggable-item-inner">
+                            {{#if body}}
+                            <div class="objectMatching-item-body draggable-item-body">
+                                <div class="objectMatching-item-body-inner draggable-item-body-inner">
+                                    {{{body}}}
+                                </div>
+                            </div>
+                            {{/if}}
+                            {{#if _graphic}}
+                            {{#if _graphic.src}}
+                            <div class="objectMatching-item-graphic draggable-item-graphic">
+                                <img src="{{_graphic.src}}" aria-label="{{_graphic.alt}}" tabindex="0">
+                            </div>
+                            {{/if}}
+                            {{/if}}
+                        </div>
+                        <div class="objectMatching-item-index draggable-item-index">
+                            {{_index}}
+                        </div>
                     </div>
                 </div>
+                {{#if title}}
+                <div class="objectMatching-item-title draggable-item-title">
+                    <div class="objectMatching-item-title-inner draggable-item-title-inner">
+                        {{{title}}}
+                    </div>
+                </div>
+                {{/if}}
             </div>
             {{/each}}
         </div>
-        <div class="objectMatching-droppables-container">
+        <div class="objectMatching-container droppables-container">
             {{#each _droppableItems}}
-            <div class="objectMatching-item-droppable default-border {{#unless ../_isEnabled}} {{#if _isCorrect}} correct{{else}} incorrect{{/if}} {{/unless}}" style="max-width:{{../_defaultMaxWidth}}px;height:{{../_defaultHeight}}px;" data-id="{{id}}">
-                <div class="objectMatching-item-droppable-inner">
-                    {{{body}}}
+            <div class="objectMatching-item-wrapper droppable-item-wrapper {{#unless ../_isEnabled}} {{#if _isCorrect}} correct{{else}} incorrect{{/if}} {{/unless}}">
+                <div class="objectMatching-item-wrapper-inner droppable-item-wrapper-inner default-border">
+                    <div class="objectMatching-item droppable-item component-item component-item-color item-{{@index}}" data-id="{{id}}">
+                        <div class="objectMatching-item-inner droppable-item-inner">
+                            {{#if body}}
+                            <div class="objectMatching-item-body droppable-item-body">
+                                <div class="objectMatching-item-body-inner droppable-item-body-inner">
+                                    {{{body}}}
+                                </div>
+                            </div>
+                            {{/if}}
+                            {{#if _graphic}}
+                            {{#if _graphic.src}}
+                            <div class="objectMatching-item-graphic droppable-item-graphic">
+                                <img src="{{_graphic.src}}" aria-label="{{_graphic.alt}}" tabindex="0">
+                            </div>
+                            {{/if}}
+                            {{/if}}
+                        </div>
+                        <div class="objectMatching-item-index droppable-item-index">
+                           {{_index}}
+                        </div>
+                    </div>
                 </div>
-                <div class="objectMatching-item-droppable-index">
+                {{#if title}}
+                <div class="objectMatching-item-title droppable-item-title">
+                    <div class="objectMatching-item-title-inner droppable-item-title-inner">
+                        {{{title}}}
+                    </div>
                 </div>
+                {{/if}}
             </div>
             {{/each}}
         </div>
