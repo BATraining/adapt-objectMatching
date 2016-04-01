@@ -17,143 +17,141 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 .objectMatching-inner {
+    .objectMatching-container {
+        display: inline-block;
+        width: 49%;
+        vertical-align: top;
 
-  .objectMatching-draggables-container {
-    display: inline-block;
-    width: 49%;
-    vertical-align: top;
+        .objectMatching-item-wrapper {
 
-    .objectMatching-item-draggable-wrapper {
-      position: relative;
-      display: block;
-      border-width: 2px;
-      border-style: solid;
-      border-color: @primary-color;
-      margin: 0 auto 2px;
+            .objectMatching-item-wrapper-inner {
+                position: relative;
+                display: block;
+                margin: 0 auto 2px;
+                border-width: 2px;
+                border-style: solid;
+                border-color: @primary-color;
 
-      &.selected {
-        border-style: solid;
-        border-color: #00A2D3;
+                .objectMatching-item {
+                    display: block;
+                    width: inherit;
+                    height: inherit;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                    text-decoration: none;
+                    color: @black;
 
-      }
+                    .no-touch &:hover {
+                        cursor: pointer;
+                    }
 
-      .objectMatching-item-draggable {
-        display: block;
-        width: inherit;
-        height: inherit;
-        text-decoration: none;
-        color: #000000;
-        -webkit-user-select:none;
-        -moz-user-select:none;
-        -ms-user-select:none;
-        -khtml-user-select: none;
-        user-select:none;
+                    .objectMatching-item-inner {
+                        width: inherit;
+                        height: inherit;
 
-        &:hover {
-          cursor: pointer;
+                        img {
+                            height: 100%;
+                        }
+                    }
+
+                    .objectMatching-item-index {
+                        font-size: 12px;
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                        width: 22px;
+                        height: 22px;
+                        padding: 0;
+                        text-align: center;
+                        color: @white;
+                        background-color: @primary-color;
+                    }
+                }
+            }
+
+            &.selected {
+                .objectMatching-item-wrapper-inner {
+                    border-style: solid;
+                    border-color: #00a2d3;
+                }
+            }
+
+            .objectMatching-item-title {
+                font-size: 20px;
+                font-weight: 600;
+                line-height: 35px;
+                height: 35px;
+                margin: 5px 0 5px 0;
+                padding: 5px 0 5px 0;
+                text-align: center;
+                border: 1px solid #dcddde;
+                background-color: @white;
+                font-color: #102a3e;
+            }
+        }
+    }
+
+    @media (max-width:760px) {
+        .objectMatching-container {
+            position: relative;
+            display: block;
+            float: left;
+            margin-right: 1%;
+
+            .objectMatching-item-title {
+                width: 99%;
+            }
         }
 
-        .objectMatching-item-draggable-inner {
-          width: inherit;
-          height: inherit;
+        .droppables-container {
+            margin-top: 0;
         }
 
-        .objectMatching-item-draggable-index {
-          position: absolute;
-          bottom: 0px;
-          right: 0px;
-          width: 22px;
-          height: 22px;
-          text-align: center;
-          font-size: 12px;
-          background-color: @primary-color;
-          color: #FFFFFF;
-          padding: 0px;
+        .objectMatching-item-inner {
+            position: relative;
+            margin: 0 25px;
         }
-      }
-    }
-  }
-
-  .objectMatching-droppables-container {
-    display: inline-block;
-    width: 49%;
-    vertical-align: top;
-
-    .objectMatching-item-droppable {
-      position: relative;
-      display: block;
-      border-width: 2px;
-      border-style: solid;
-      border-color: #102A3E
-
-      margin: 0 auto 2px;
-
-      .objectMatching-item-droppable-inner {
-        width: inherit;
-        height: inherit;
-      }
-
-      .objectMatching-item-droppable-index {
-        position: absolute;
-        bottom: 0px;
-        right: 0px;
-        width: 22px;
-        height: 22px;
-        text-align: center;
-        font-size: 12px;
-        background-color: @primary-color;
-        color: #FFFFFF;
-        padding: 0px;
-
-      }
-      &.selected{
-        border-color: #00A2D3;
-      }
-    }
-  }
-
-  @media (max-width:760px) {
-
-    .objectMatching-draggables-container, .objectMatching-droppables-container {
-      display: block;
-      width: 100%;
     }
 
-    .objectMatching-droppables-container {
-      margin-top: 25px;
-    }
-  }
-}
+    .objectMatching-widget {
+        position: relative;
+        display: inline-block;
 
-.objectMatching-widget {
+        &.show-user-answer {
+            .incorrect {
+                .objectMatching-item-wrapper-inner {
+                    border-style: solid;
+                    border-color: @red;
+                }
+            }
 
-  &.show-user-answer {
-    .incorrect {
-      border-style: solid;
-      border-color: #FF0000;
-    }
-    .correct {
-      border-style: solid;
-      border-color: #00FF00;
-    }
-  }
+            .correct {
+                .objectMatching-item-wrapper-inner {
+                    border-style: solid;
+                    border-color: @green;
+                }
+            }
+        }
 
-  &.show-correct-answer {
-    .objectMatching-item-droppable {
-      border-style: solid;
-      border-color: #00FF00;
-    }
-  }
+        &.show-correct-answer {
+            .droppable-item-wrapper-inner {
+                border-style: solid;
+                border-color: @green;
+            }
+        }
 
-  &.disabled {
-    .objectMatching-item-draggable {
-      &:hover {
-        cursor: default;
-      }
+        &.disabled {
+            .draggable-item {
+                .no-touch &:hover {
+                    cursor: default;
+                }
+            }
+        }
     }
-  }
 }
 
 .cursor-pointer {
-  cursor: pointer;
+    cursor: pointer;
 }

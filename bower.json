@@ -1,14 +1,17 @@
 {
   "name": "adapt-objectMatching",
-  "version": "1.0.0",
+  "version": "1.1.0",
+  "framework": "^2.0.0",
   "homepage": "https://github.com/BATraining/adapt-objectMatching",
+  "issues": "https://github.com/BATraining/adapt-objectMatching/issues",
+  "repository": "git@github.com:BATraining/adapt-objectMatching.git",
   "authors": [
     "Himanshu Rajotia <himanshu.rajotia@exultcorp.com>"
   ],
-  "displayName" : "Object Matching",
-  "component" : "objectMatching",
-  "description": "A basic Adapt object matching component.",
+  "description": "A basic object matching question component.",
   "main": "/js/adapt-objectMatching.js",
+  "displayName": "Object Matching",
+  "component": "objectMatching",
   "keywords": [
     "adapt-plugin",
     "adapt-component"
