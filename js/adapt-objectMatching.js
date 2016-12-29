@@ -293,6 +293,29 @@ define(function(require) {
             _.each(this.model.get('_droppableItems'), function(item, index) {
                 this.setdroppableItems(index, this.model.get('_userAnswer')[index]);
             }, this);
+        },
+        
+          /**
+        * used by adapt-contrib-spoor to get the user's answers in the format required by the cmi.interactions.n.student_response data field
+        * returns the user's answers as a string in the format "1,5,2"
+        */
+        getResponse:function() {
+            var selected = _.where(this.model.get('_items'), {'_isSelected':true});
+            var selectedIndexes = _.pluck(selected, '_index');
+            console.log("selected",selected);
+            console.log("selectedIndexes",selectedIndexes);
+            // indexes are 0-based, we need them to be 1-based for cmi.interactions
+            for (var i = 0, count = selectedIndexes.length; i < count; i++) {
+                selectedIndexes[i]++;
+            }
+            return selectedIndexes.join(',');
+        },
+
+        /**
+        * used by adapt-contrib-spoor to get the type of this question in the format required by the cmi.interactions.n.type data field
+        */
+        getResponseType:function() {
+            return "choice";
         }
 
     });
